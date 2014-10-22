@@ -23,7 +23,7 @@ def generateIpa settings
   signingIdentity     = settings[:signingIdentity]
   provisioningProfile = settings[:provisioningProfile]
   
-  system("rm -f \"#{dsymPath}\"")
+  system("rm -R -f \"#{dsymPath}\"")
   
   puts "Construction de l'IPA"
   
@@ -38,7 +38,7 @@ def generateIpa settings
   puts   signingCommand
   system signingCommand
   
-  system("rm -f \"#{savedDsymPath}\"")
+  system("rm -R -f \"#{savedDsymPath}\"")
   system("cp -R \"#{dsymPath}\" \"#{savedDsymPath}\"")
   system("zip -r \"#{zippedDsymPath}\" \"#{savedDsymPath}\"")
   
