@@ -24,9 +24,7 @@ def generateIpa settings
   
   signingIdentity     = settings[:signingIdentity]
   provisioningProfile = settings[:provisioningProfile]
-  
-  system("rm -R -f \"#{dsymPath}\"")
-  
+    
   puts "Construction de l'IPA"
   
   signingCommand =  "/usr/bin/xcrun -sdk iphoneos PackageApplication"
@@ -42,5 +40,6 @@ def generateIpa settings
   system("rm -R -f \"#{savedDsymPath}\"")
   system("cp -R \"#{dsymPath}\" \"#{savedDsymPath}\"")
   system("zip -r \"#{zippedDsymPath}\" \"#{savedDsymPath}\"")
+  system("rm -R -f \"#{dsymPath}\"")
   
 end
