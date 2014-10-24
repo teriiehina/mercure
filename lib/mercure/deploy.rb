@@ -95,7 +95,7 @@ def uploadDeploymentsByAsking (plist)
 
       menu.choice(:oui) do
         say("Bon choix !")
-        uploadDeployments deploy
+        uploadDeploy deploy
       end
       
       menu.choice(:non) { say("Dommage") }

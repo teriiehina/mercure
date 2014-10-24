@@ -7,9 +7,7 @@ require 'parse-ruby-client'
 require_relative 'paths.rb'
 
 def generateIpa settings
-  
-  system "mkdir -p \"#{buildDirectory}/logs/\""
-  
+    
   buildDirectory      = settings[:buildDirectory]
   buildConfiguration  = settings[:buildConfiguration]
   buildNumber         = settings[:buildNumber]
@@ -24,6 +22,8 @@ def generateIpa settings
   
   signingIdentity     = settings[:signingIdentity]
   provisioningProfile = settings[:provisioningProfile]
+  
+  system "mkdir -p \"#{buildDirectory}/logs/\""
     
   puts "Construction de l'IPA"
   
