@@ -26,7 +26,7 @@ def buildApp (settings)
   build_command += " TARGET_BUILD_DIR=\"#{buildDirectory}\"/#{buildConfiguration}-iphoneos"
   build_command += " CONFIGURATION_BUILD_DIR=\"#{buildDirectory}\"/#{buildConfiguration}-iphoneos"
   build_command += " clean build"
-  build_command += " | tee \"#{buildDirectory}/#{applicationName}.log\""
+  build_command += " | tee \"#{buildDirectory}/logs/#{applicationName}_building.log\""
   build_command += " | xcpretty -c --report html"
   
   puts build_command

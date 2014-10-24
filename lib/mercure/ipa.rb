@@ -32,8 +32,7 @@ def generateIpa settings
   signingCommand +=  " -o \"#{ipaPath}\""
   signingCommand +=  " --sign \"#{signingIdentity}\""
   signingCommand +=  " --embed \"#{provisioningProfile}\""
-  signingCommand +=  " | tee \"#{settings[:buildDirectory]}/PackageApplication.log\""
-  
+  signingCommand += " | tee \"#{buildDirectory}/logs/#{applicationName}_package.log\""
   
   puts   signingCommand
   system signingCommand
