@@ -8,6 +8,8 @@ require_relative 'paths.rb'
 
 def generateIpa settings
   
+  system "mkdir -p \"#{buildDirectory}/logs/\""
+  
   buildDirectory      = settings[:buildDirectory]
   buildConfiguration  = settings[:buildConfiguration]
   buildNumber         = settings[:buildNumber]
@@ -34,7 +36,7 @@ def generateIpa settings
   signingCommand +=  " --embed \"#{provisioningProfile}\""
   signingCommand += " | tee \"#{buildDirectory}/logs/#{applicationName}_package.log\""
   
-  puts   signingCommand
+  system("echo \"#{signingCommand}\" | tee \"#{buildDirectory}/logs/#{applicationName}_package.log\" ")
   system signingCommand
   
   system("rm -R -f \"#{savedDsymPath}\"")
