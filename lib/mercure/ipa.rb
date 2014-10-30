@@ -30,7 +30,6 @@ def generateIpa settings
   signingCommand =  "/usr/bin/xcrun -sdk iphoneos PackageApplication"
   signingCommand +=  " -v \"#{appPath}\""
   signingCommand +=  " -o \"#{ipaPath}\""
-  signingCommand +=  " --sign \"#{signingIdentity}\""
   signingCommand +=  " --embed \"#{provisioningProfile}\""
   signingCommand += " | tee \"#{buildDirectory}/logs/#{applicationName}_package.log\""
   
