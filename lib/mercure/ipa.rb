@@ -27,9 +27,12 @@ def generateIpa settings
     
   puts "Construction de l'IPA"
   
+  # system("codesign -s \"#{signingIdentity}\" \"#{appPath}\"")
+  
   signingCommand =  "/usr/bin/xcrun -sdk iphoneos PackageApplication"
   signingCommand +=  " -v \"#{appPath}\""
   signingCommand +=  " -o \"#{ipaPath}\""
+  signingCommand +=  " --sign \"#{signingIdentity}\""
   signingCommand +=  " --embed \"#{provisioningProfile}\""
   signingCommand += " | tee \"#{buildDirectory}/logs/#{applicationName}_package.log\""
   

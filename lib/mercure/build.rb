@@ -21,6 +21,7 @@ def buildApp (settings)
   build_command += " -workspace \"#{workspaceName}\""
   build_command += " -scheme \"#{schemeName}\""
   build_command += " -configuration #{buildConfiguration}"
+  build_command += " -sdk iphoneos"
   build_command += " BUILD_DIR=\"#{buildDirectory}\""
   build_command += " BUILD_PRODDUCTS_DIR=\"#{buildDirectory}\"/#{buildConfiguration}-iphoneos"
   build_command += " TARGET_BUILD_DIR=\"#{buildDirectory}\"/#{buildConfiguration}-iphoneos"

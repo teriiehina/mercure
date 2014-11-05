@@ -38,6 +38,14 @@ def updateParse (settings)
     puts "le déploiement a bien été mis à jour"
   end  
   
+  # on "met à jour" l'application
+  
+  appQuery = Parse::Query.new("Application")
+  appQuery.eq("objectId", parseInfos["applicationId"])
+  app = appQuery.get.first
+  
+  dontCare = app.save
+  
   result["objectId"]
   
 end
