@@ -68,7 +68,7 @@ def buildDeploy (deploy)
 
   puts "Création de l'.app"
   buildApp settings
-  #updateBuild settings
+  updateBuild settings
   
   puts "Création de l'.ipa et du .plist"
   buildArtefacts settings
@@ -206,7 +206,7 @@ def panDeployments (plist)
 
     puts "Création de l'.app"
     buildApp settings
-    #updateBuild settings
+    updateBuild settings
     
     puts "Création de l'.ipa et du .plist"
     buildArtefacts settings
