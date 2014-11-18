@@ -101,8 +101,16 @@ def checkPathOnFTP(host, usermame , password , path)
   
   folders = path.split("/")
   
-  ftp = Net::FTP.new(host)
-  ftp.login(usermame , password)
+  count = 0
+
+  begin
+    ftp = Net::FTP.new(host)
+    ftp.login(usermame , password)
+  rescue Errno::ECONNRESET => e
+    count += 1
+    retry unless count > 10
+    puts "tried 10 times and couldn't get #{url}: #{e}"
+  end
   
   createFolders(ftp , folders)
   
