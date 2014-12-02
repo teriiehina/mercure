@@ -29,7 +29,11 @@ def ipaName (settings)
   
   pjServerConf        = settings[:deploy]["infosPlist"]["PJServerConf"]
 
-  "#{applicationName}.#{buildNumber}.ipa"
+  if settings[:buildConfiguration] == "Release"
+    "#{applicationName}.ipa"
+  else
+    "#{applicationName}.#{buildNumber}.ipa"
+  end
   
 end
 
