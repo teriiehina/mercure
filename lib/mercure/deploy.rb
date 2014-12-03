@@ -15,6 +15,7 @@ require_relative 'parse.rb'
 require_relative 'paths.rb'
 require_relative 'git.rb'
 require_relative 'upload.rb'
+require_relative 'changelog.rb'
 
 # 
 # Build
@@ -67,8 +68,8 @@ def buildDeploy (deploy)
   checkOutGitVersion settings
 
   puts "Création de l'.app"
-  buildApp settings
-  updateBuild settings
+  #buildApp settings
+  #updateBuild settings
   
   puts "Création de l'.ipa et du .plist"
   buildArtefacts settings
@@ -224,8 +225,9 @@ end
 
 
 def buildArtefacts (xcode_settings)
-  generateIpa   xcode_settings
-  generatePlist xcode_settings
+  generateIpa         xcode_settings
+  generatePlist       xcode_settings
+  generateChangelog   xcode_settings
 end
 
 # def unlock_keychain

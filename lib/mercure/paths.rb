@@ -156,6 +156,45 @@ def remoteDsymPath (settings , destination)
 end
 
 #
+# IPA
+#
+
+def changelogName (settings)
+
+  buildDirectory      = settings[:buildDirectory]
+  buildConfiguration  = settings[:buildConfiguration]
+  buildNumber         = settings[:buildNumber]
+  applicationName     = settings[:applicationName]
+  
+  pjServerConf        = settings[:deploy]["infosPlist"]["PJServerConf"]
+
+  "changelog.#{applicationName}.#{buildNumber}.html"
+    
+end
+
+def changelogPath (settings)
+  
+  buildDirectory      = settings[:buildDirectory]
+  buildConfiguration  = settings[:buildConfiguration]
+  buildNumber         = settings[:buildNumber]
+  applicationName     = settings[:applicationName]
+  changelogName       = changelogName(settings)
+  
+  "#{buildDirectory}/#{buildConfiguration}-iphoneos/#{changelogName}"
+  
+end
+
+def remoteChangelogPath (settings , destination)
+
+  changelogName       = changelogName(settings)
+  remotePath          = destination["path"]
+  
+  "#{remotePath}/#{changelogName}"
+  
+end
+
+
+#
 # Extra
 #
 
