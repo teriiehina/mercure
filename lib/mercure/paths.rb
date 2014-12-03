@@ -193,6 +193,14 @@ def remoteChangelogPath (settings , destination)
   
 end
 
+def publicChangelogURL (settings)
+  
+  publicURL     = settings[:deploy]["uploadServer"]["plist"][0]["publicURL"]  
+  changelogName = changelogName (settings)
+  
+  "#{publicURL}/#{changelogName}"
+  
+end
 
 #
 # Extra

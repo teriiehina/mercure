@@ -12,11 +12,9 @@ require_relative 'paths.rb'
 
 def uploadArtefacts(settings)
   
-  uploadPlist(settings)
-  uploadIPA(settings)
-
-  # legacy, shouldn't be needed when the old DTAppStore will no more be used.
-  updateDTMobXML settings
+  uploadPlist       settings
+  uploadIPA         settings
+  uploadChangelog   settings
   
 end
 
@@ -66,6 +64,21 @@ def uploadPlist(settings)
     remoteDeployPlistPath   = remoteDeployPlistPath (settings , destination)
     
     files_to_upload = [[deployPlistPath , remoteDeployPlistPath]]
+    
+    uploadFiles(settings , destination , files_to_upload)
+    
+  end
+  
+end
+
+def uploadChangelog(settings)
+  
+  settings[:deploy]["uploadServer"]["plist"].each do |destination|
+    
+    changelogPath         = changelogPath       (settings)
+    remoteChangelogPath   = remoteChangelogPath (settings , destination)
+    
+    files_to_upload = [[changelogPath , remoteChangelogPath]]
     
     uploadFiles(settings , destination , files_to_upload)
     
@@ -158,61 +171,6 @@ def uploadViaFTP(host, usermame , password , path, files_to_upload)
   end
   
   ftp.close
-  
-end
-
-
-def updateDTMobXML (settings)
-  
-  # après upload des artefacts, on peut mettre à jour le fichier dtmob.xml
-  # et pourquoi pas dsem.xml
-  
-  puts "Pas de mise à jour du dtmob.xml pour le moment"
-  
-  return
-  
-  host        = settings[:deploy]["uploadServer"]["ipa"][0]["host"]
-  login       = settings[:deploy]["uploadServer"]["ipa"][0]["login"]
-  path        = settings[:deploy]["uploadServer"]["ipa"][0]["path"]
-  buildNumber = settings[:buildNumber]
-  
-  dtmobApplicationName    = settings[:deploy]["uploadServer"]["ipa"][0]["applicationTitle"]
-  dtmobApplicationVersion = settings[:deploy]["uploadServer"]["ipa"][0]["applicationVersion"]
-  
-  Net::SCP.start(host, login) do |scp|
-    puts 'Mise-à-jour du fichier dtmob.xml'
-    scp.download!(remoteDTMobFile, localDTMobFile)
-    
-    file  = File.read(localDTMobFile)
-    dtmob = Nokogiri::XML(file)
-    
-    timeFormat        = "%Y-%m-%d %H-%M-%S"
-    lastUpdate        = DateTime.now.strftime(timeFormat)
-    applicationXPath  = "//application[title='#{dtmobApplicationName}']"
-    versionXPath      = "version[numero='#{dtmobApplicationVersion}']"
-    changeLogXPath    = "changelog"
-    changeLogContent  = <<-EOXML
-    <![CDATA[
-    <ul>
-    <li>Last update: #{lastUpdate}</li>
-    <li>Build number: #{buildNumber}</li>
-    </ul>]]>
-    EOXML
-    
-    application       = dtmob.xpath(applicationXPath)
-    version           = application.xpath(versionXPath)
-    
-    changeLog            = version.xpath(changeLogXPath).first
-    changeLog.inner_html = changeLogContent
-    
-    # save the output into a new file
-    File.open(localDTMobFile, "w") do |f|
-      f.write dtmob.to_xml
-    end
-    
-    
-    scp.upload(localDTMobFile , remoteDTMobFile)
-  end
   
 end
 

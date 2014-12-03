@@ -29,6 +29,7 @@ def updateParse (settings)
   appVersion["versionChangeLog"] = parseInfos["versionChangeLog"]
   appVersion["versionLevel"]     = parseInfos["versionLevel"].to_i
   appVersion["versionUrl"]       = publicPlistURL settings
+  appVersion["changelogUrl"]     = publicChangelogURL settings
 
   result = appVersion.save
   

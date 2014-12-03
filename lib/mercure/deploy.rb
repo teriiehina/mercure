@@ -68,8 +68,8 @@ def buildDeploy (deploy)
   checkOutGitVersion settings
 
   puts "Création de l'.app"
-  #buildApp settings
-  #updateBuild settings
+  buildApp settings
+  updateBuild settings
   
   puts "Création de l'.ipa et du .plist"
   buildArtefacts settings
