@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe CLI do
+describe Mercure do
   pending "write it"
 end
