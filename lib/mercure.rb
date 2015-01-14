@@ -3,6 +3,7 @@ require 'thor'
 require 'plist'
 
 require 'mercure/deploy'
+require 'mercure/changelog'
 
 module Mercure
 
@@ -56,6 +57,13 @@ module Mercure
       else
         panDeployments plist
       end
+    end
+    
+    desc "changelog JOB", "will build, upload and deploy the job"
+    option :p, :type => :boolean
+    option :pinailleur, :type => :boolean
+    def changelog(plist)
+      generateChangelogs plist
     end
     
   end
