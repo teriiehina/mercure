@@ -23,8 +23,9 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
   
   spec.add_development_dependency 'rspec'
+  spec.add_development_dependency 'rspec-mocks'
   spec.add_development_dependency 'simplecov'
-
+  
   spec.add_runtime_dependency 'bundler'
   spec.add_runtime_dependency "rake"
   spec.add_runtime_dependency 'thor'
