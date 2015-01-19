@@ -1,7 +1,6 @@
 require 'rubygems'
 require 'bundler/setup'
 
-# require 'highline/import'
 
 def checkOutGitVersion (settings)
   
