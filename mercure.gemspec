@@ -22,17 +22,17 @@ Gem::Specification.new do |spec|
   spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
   spec.require_paths = ["lib"]
   
-  spec.add_development_dependency 'rspec'
-  spec.add_development_dependency 'rspec-mocks'
-  spec.add_development_dependency 'simplecov'
+  spec.add_development_dependency 'rspec', '~> 3.3'
+  spec.add_development_dependency 'rspec-mocks', '~> 3.3'
+  spec.add_development_dependency 'simplecov', '~> 0'
   
-  spec.add_runtime_dependency 'bundler'
-  spec.add_runtime_dependency "rake"
-  spec.add_runtime_dependency 'thor'
-  spec.add_runtime_dependency 'plist'
-  spec.add_runtime_dependency 'net-scp'
-  spec.add_runtime_dependency 'parse-ruby-client'
-  spec.add_runtime_dependency 'nokogiri'
-  spec.add_runtime_dependency 'CFPropertyList'
-  spec.add_runtime_dependency 'xcpretty'
+  spec.add_runtime_dependency 'bundler', '~> 1.10'
+  spec.add_runtime_dependency "rake", '~> 0'
+  spec.add_runtime_dependency 'thor', '~> 0'
+  spec.add_runtime_dependency 'plist', '~> 3.1'
+  spec.add_runtime_dependency 'net-scp', '~> 1.2'
+  spec.add_runtime_dependency 'parse-ruby-client', '~> 0'
+  spec.add_runtime_dependency 'nokogiri', '~> 1.6'
+  spec.add_runtime_dependency 'CFPropertyList', '~> 2.3'
+  spec.add_runtime_dependency 'xcpretty', '~> 0.1'
 end

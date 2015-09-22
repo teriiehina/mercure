@@ -227,7 +227,9 @@ end
 def buildArtefacts (xcode_settings)
   generateIpa         xcode_settings
   generatePlist       xcode_settings
-  generateChangelog   xcode_settings
+
+  # the following line has been commented in order to make it work on Xcode 7
+  #  generateChangelog   xcode_settings
 end
 
 # def unlock_keychain
