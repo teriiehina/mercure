@@ -9,7 +9,7 @@ require_relative 'paths.rb'
 
 def generatePlist (settings)
   
-  puts "Creation du plist"
+  puts "--> Creation du plist"
   
   buildConfiguration  = settings[:buildConfiguration]
   buildDirectory      = settings[:buildDirectory]
@@ -23,22 +23,24 @@ def generatePlist (settings)
   items       = Array.new
   item        = Hash.new
   
+  assets        = Array.new
   
-  assets      = Array.new
-  asset       = Hash.new
+  asset         = Hash.new
   asset['kind'] = 'software-package'
-  
   asset['url']  = settings[:deploy]["uploadServer"]["ipa"][0]["publicURL"] + "/" + ipaName(settings)
 
   assets.push asset
   
-  metadata    = Hash.new
-  metadata['bundle-identifier'] = settings[:deploy]["infosPlist"]["CFBundleIdentifier"] + ".iOS8"
+  metadata = Hash.new
+  
+  # the following line has been commented and replaced by th next one in order to make it work on iOS 9...
+  # metadata['bundle-identifier'] = settings[:deploy]["infosPlist"]["CFBundleIdentifier"] + ".iOS8"
+  metadata['bundle-identifier'] = settings[:deploy]["infosPlist"]["CFBundleIdentifier"]
   metadata['bundle-version']    = projectInfos['CFBundleVersion']
   metadata['subtitle']          = 'by SoLocal'
   metadata['title']             = settings[:deploy]["infosPlist"]["CFBundleDisplayName"]
   metadata['kind']              = 'software'
-  
+
   item['assets']    = assets
   item['metadata']  = metadata
   
