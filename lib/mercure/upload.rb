@@ -14,7 +14,7 @@ def uploadArtefacts(settings)
   
   uploadPlist       settings
   uploadIPA         settings
-  uploadChangelog   settings
+  # uploadChangelog   settings
   
 end
 
