@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.homepage    = 'https://github.com/teriiehina/mercure'
   spec.license     = 'MIT'
   
-  spec.date        = '2014-03-06'
+  spec.date        = '2015-11-23'
   spec.summary     = "Build and distribute iOS app"
   spec.description = "A tool that works only with plist files"
   spec.authors     = ["Peter Meuel"]
